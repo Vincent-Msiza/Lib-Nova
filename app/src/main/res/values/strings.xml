@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="our_logo">Our logo</string>
+    <string name="Discover">Discover a world of knowledge and innovation</string>
+    <string name="lets_go">Lets go!</string>
+    <string name="welcome">welcome to lib nova</string>
 </resources>
