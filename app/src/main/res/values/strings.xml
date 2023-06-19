@@ -4,4 +4,15 @@
     <string name="Discover">Discover a world of knowledge and innovation</string>
     <string name="lets_go">Lets go!</string>
     <string name="welcome">welcome to lib nova</string>
+    <string name="create_account">Create account</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="get_started">Get Started</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="sign_in">Sign in</string>
+    <string name="forgot_password">Forgot password</string>
 </resources>

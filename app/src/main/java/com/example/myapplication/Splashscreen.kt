@@ -37,7 +37,7 @@ class Splashscreen : AppCompatActivity() {
 
             } else {
                 // Page has already been shown before, do something else
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Login::class.java)
                 startActivity(intent)
                 finish()
             }
