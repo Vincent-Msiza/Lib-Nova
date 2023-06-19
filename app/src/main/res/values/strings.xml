@@ -15,4 +15,8 @@
     <string name="signup">Signup</string>
     <string name="sign_in">Sign in</string>
     <string name="forgot_password">Forgot password</string>
+    <string name="reset">Reset</string>
+    <string name="return_to_login">Return to login</string>
+    <string name="hooray">Hooray!</string>
+    <string name="you_successfully_registered">you successfully registered</string>
 </resources>

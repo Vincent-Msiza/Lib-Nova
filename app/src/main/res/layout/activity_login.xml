@@ -7,10 +7,12 @@
     tools:context=".Login">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp"
+        android:paddingTop="55dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,38 +21,33 @@
         <ImageView
             android:layout_width="203dp"
             android:layout_height="100dp"
-            android:layout_marginTop="80dp"
-            android:src="@drawable/mainlogo"
             android:layout_gravity="center"
-            android:contentDescription="@string/our_logo" />
-
+            android:contentDescription="@string/our_logo"
+            android:src="@drawable/mainlogo" />
 
 
         <TextView
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="textStart"
             android:layout_gravity="center"
             android:text="@string/sign_in"
+            android:textAlignment="textStart"
             android:textColor="@color/blue"
             android:textSize="23sp"
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
             android:ems="10"
             android:inputType="text"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
             app:hintAnimationEnabled="false"
-            app:hintEnabled="false"
-            >
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmailAddress"
@@ -61,26 +58,23 @@
                 android:hint="@string/email_address"
                 android:inputType="textEmailAddress"
                 android:minHeight="60dp"
-                android:padding="10dp"
-                />
+                android:padding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:ems="10"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-            app:passwordToggleEnabled="true"
-            android:ems="10"
             app:hintAnimationEnabled="false"
             app:hintEnabled="false"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/blue"
 
             >
 
@@ -89,68 +83,70 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/et_style"
-                android:hint="@string/password"
                 android:ems="15"
-               android:padding="10dp"
+                android:hint="@string/password"
+
                 android:inputType="textEmailAddress"
-                android:minHeight="60dp" />
+                android:minHeight="60dp"
+                android:padding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/forgot_password"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:text="@string/forgot_password"
-            android:textColor="@color/green"
             android:textAlignment="textEnd"
+            android:textColor="@color/green"
             tools:ignore="RtlCompat" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
+            android:background="@drawable/et_style"
             android:text="@string/sign_in"
             android:textColor="@color/blue"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:background="@color/green"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
 
-        <RelativeLayout
-            android:layout_width="220dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/tvRedirectSignUp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:text="@string/don_t_have_an_account"
                 android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_alignParentStart="true"
-                android:layout_toStartOf="@+id/tvRedirectSignUp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvRedirectSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
                 android:text="@string/signup"
+                android:textAlignment="inherit"
                 android:textColor="@color/green"
-                android:textSize="16sp"
-                android:layout_alignParentEnd="true" />
+                android:textSize="16sp" />
 
 
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
 
 class Registration : AppCompatActivity() {
 
@@ -38,18 +37,19 @@ class Registration : AppCompatActivity() {
 
         btnSignUp.setOnClickListener {
             signUpUser()
-            finish()
         }
 
         // switching from signUp Activity to Login Activity
         tvRedirectLogin.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
 
     private fun signUpUser() {
+
         val email = etEmail.text.toString()
         val pass = etPass.text.toString()
         val confirmPassword = etConfPass.text.toString()
@@ -71,8 +71,10 @@ class Registration : AppCompatActivity() {
         // email and pass in it.
         auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
-                Toast.makeText(this, "Successfully Singed Up", Toast.LENGTH_SHORT).show()
-                finish()
+
+                val intent = Intent(this, RSuccess::class.java)
+                startActivity(intent)
+
             } else {
                 Toast.makeText(this, "Singed Up Failed!", Toast.LENGTH_SHORT).show()
             }

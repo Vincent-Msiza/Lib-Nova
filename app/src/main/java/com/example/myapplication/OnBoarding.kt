@@ -18,7 +18,7 @@ class OnBoarding : AppCompatActivity() {
         // move to the next screen
         val letsGo = findViewById<Button>(R.id.letsGo)
         letsGo.setOnClickListener {
-            intent = Intent(this,MainActivity::class.java)
+            intent = Intent(this, Login::class.java)
             startActivity(intent)
             finish()
         }
