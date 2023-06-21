@@ -1,18 +1,10 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.FrameLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.FirebaseApp
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +30,18 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.search -> {
                     loadFragment(SearchFragment())
+                    return@setOnItemSelectedListener true
+                }
+                R.id.nova -> {
+                    loadFragment(Novaragment())
+                    return@setOnItemSelectedListener true
+                }
+                R.id.book -> {
+                    loadFragment(LibraryFragment())
+                    return@setOnItemSelectedListener true
+                }
+                R.id.profile -> {
+                    loadFragment(AccountFragment())
                     return@setOnItemSelectedListener true
                 }
 
