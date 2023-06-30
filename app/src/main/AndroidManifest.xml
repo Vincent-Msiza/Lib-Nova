@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ExtraText">
 
     <application
         android:allowBackup="true"
@@ -13,55 +14,84 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".RSuccess"
-            android:exported="false"
-            android:noHistory="true"
-            />
+            android:name=".NotificationsAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Admin"
+            android:exported="false" />
+        <activity
+            android:name=".admin"
+            android:exported="false" />
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/notificon" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/green" />
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
 
         <activity
-            android:name=".Forgotpassword"
+            android:name=".Notifications"
+            android:exported="false" />
+        <activity
+            android:name=".Registration3"
+            android:exported="false" />
+        <activity
+            android:name=".Registration2"
+            android:exported="false" />
+        <activity
+            android:name=".RSuccess"
             android:exported="false"
-            />
-
+            android:noHistory="true" />
+        <activity
+            android:name=".Forgotpassword"
+            android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="false"
-            android:noHistory="true"
-            />
-
+            android:noHistory="true" />
         <activity
             android:name=".Registration"
             android:exported="false"
-            android:noHistory="true"
-            />
-
+            android:noHistory="true" />
         <activity
             android:name=".OnBoarding"
             android:exported="false"
-            android:noHistory="true"
-            />
-
+            android:noHistory="true" />
         <activity
             android:name=".Splashscreen"
             android:exported="true"
-            android:noHistory="true"
-            >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:noHistory="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
+        </activity> <!-- Add here -->
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

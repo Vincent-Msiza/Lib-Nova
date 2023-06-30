@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "833662057731",
+    "firebase_url": "https://lib-nova-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "lib-nova",
     "storage_bucket": "lib-nova.appspot.com"
   },

@@ -2,13 +2,21 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
+@Suppress("DEPRECATION")
 class Login : AppCompatActivity() {
     private lateinit var tvRedirectSignUp: TextView
     lateinit var etEmail: EditText
@@ -29,6 +37,7 @@ class Login : AppCompatActivity() {
         etEmail = findViewById(R.id.etEmailAddress)
         etPass = findViewById(R.id.etPassword)
         forgotpassword = findViewById(R.id.forgot_password)
+        val progressBar = findViewById<ProgressBar>(R.id.progress_bar_sign_in)
 
 
 
@@ -37,7 +46,25 @@ class Login : AppCompatActivity() {
 
 
 
+
         btnLogin.setOnClickListener {
+
+            progressBar.visibility = View.VISIBLE
+            btnLogin.visibility = View.INVISIBLE
+
+            // Perform sign-in operation or any other async task
+            // ...
+
+            // Simulate a delay for demonstration purposes (replace with your actual sign-in logic)
+            Handler().postDelayed({
+                // Hide the progress bar and show the sign-in button
+                progressBar.visibility = View.GONE
+                btnLogin.visibility = View.VISIBLE
+
+                // Move to the next screen or perform other actions
+                // ...
+            }, 6000) // 2-second delay for demonstration
+
             login()
         }
 
@@ -70,9 +97,7 @@ class Login : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this) {
             if (it.isSuccessful) {
 
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+               checkuser()
 
             } else
                 Toast.makeText(this, "Log In failed ", Toast.LENGTH_SHORT).show()
@@ -80,4 +105,36 @@ class Login : AppCompatActivity() {
 
 
     }
+
+    private fun checkuser() {
+        val firebaseuser = auth.currentUser
+        val ref = FirebaseDatabase.getInstance().getReference("users")
+        ref.child(firebaseuser!!.uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val usertype = snapshot.child("usertype").value
+
+                    if (usertype == "user"){
+                        startActivity(Intent(this@Login, MainActivity::class.java))
+                        finish()
+                    }
+                    else if(usertype == "admin"){
+                        startActivity(Intent(this@Login, Admin::class.java))
+                        finish()
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+
+            }
+
+
+            )
+    }
+
+
 }

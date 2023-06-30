@@ -1,64 +1,46 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.FirebaseApp
 
-class MainActivity : AppCompatActivity() {
+class Admin : AppCompatActivity() {
 
     private lateinit var bottomNav: BottomNavigationView
 
-
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        // Initialize Firebase
-        FirebaseApp.initializeApp(this)
+        setContentView(R.layout.activity_admin)
 
         bottomNav = findViewById(R.id.bottom_navigation)
-        //removing the effect of grey icons or default tint
-//        bottomNav.itemIconTintList = null
 
-        loadFragment(HomeFragment())
-
+        loadFragment(HomeAdmin())
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    loadFragment(HomeFragment())
+                    loadFragment(HomeAdmin())
 
                     return@setOnItemSelectedListener true
                 }
                 R.id.search -> {
-                    loadFragment(SearchFragment())
-                    return@setOnItemSelectedListener true
-                }
-                R.id.nova -> {
-                    loadFragment(Novaragment())
-                    return@setOnItemSelectedListener true
-                }
-                R.id.book -> {
-                    loadFragment(LibraryFragment())
+                    loadFragment(SearchAdmin())
                     return@setOnItemSelectedListener true
                 }
                 R.id.profile -> {
-                    loadFragment(AccountFragment())
+                    loadFragment(ProfileAdmin())
                     return@setOnItemSelectedListener true
                 }
-
             }
-           false
+            false
         }
-    }
 
+
+
+    }
     private  fun loadFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container,fragment)
         transaction.commit()
     }
-
 }

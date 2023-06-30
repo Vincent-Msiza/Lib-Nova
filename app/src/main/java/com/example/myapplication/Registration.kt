@@ -1,14 +1,15 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.util.Patterns
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
@@ -19,12 +20,11 @@ import com.google.firebase.ktx.Firebase
 
 class Registration : AppCompatActivity() {
 
-    lateinit var etEmail: EditText
-    lateinit var etConfPass: EditText
+    private lateinit var etEmail: EditText
+    private lateinit var etConfPass: EditText
     private lateinit var etPass: EditText
     private lateinit var btnSignUp: Button
-    lateinit var tvRedirectLogin: TextView
-    private lateinit var nameEditText: EditText
+    private lateinit var tvRedirectLogin: TextView
     // create Firebase authentication object
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
@@ -40,7 +40,6 @@ class Registration : AppCompatActivity() {
         etPass = findViewById(R.id.etSPassword)
         btnSignUp = findViewById(R.id.btnSSigned)
         tvRedirectLogin = findViewById(R.id.tvRedirectLogin)
-        nameEditText = findViewById(R.id.etSFullName)
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this)
@@ -48,7 +47,6 @@ class Registration : AppCompatActivity() {
         // Initialising auth object
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
-        val db = Firebase.firestore
 
         btnSignUp.setOnClickListener {
             signUpUser()
@@ -68,9 +66,9 @@ class Registration : AppCompatActivity() {
         val email = etEmail.text.toString()
         val pass = etPass.text.toString()
         val confirmPassword = etConfPass.text.toString()
-        val name = nameEditText.text.toString()
+        val progressBar = findViewById<ProgressBar>(R.id.progress_bar_sign_in)
 
-        val db = Firebase.firestore
+
 
         // check pass
         if (email.isBlank() || pass.isBlank() || confirmPassword.isBlank()) {
@@ -90,6 +88,24 @@ class Registration : AppCompatActivity() {
                 .show()
             return
         }
+
+
+        progressBar.visibility = View.VISIBLE
+        btnSignUp.visibility = View.INVISIBLE
+
+        // Perform sign-in operation or any other async task
+        // ...
+
+        // Simulate a delay for demonstration purposes (replace with your actual sign-in logic)
+        Handler().postDelayed({
+            // Hide the progress bar and show the sign-in button
+            progressBar.visibility = View.GONE
+            btnSignUp.visibility = View.VISIBLE
+
+            // Move to the next screen or perform other actions
+            // ...
+        }, 2000) // 2-second delay for demonstration
+
         // If all credential are correct
         // We call createUserWithEmailAndPassword
         // using auth object and pass the
@@ -100,33 +116,13 @@ class Registration : AppCompatActivity() {
                 // Registration successful
                 Toast.makeText(this, "Signed up success", Toast.LENGTH_SHORT).show()
 
-                val user = hashMapOf(
-                    "name" to name
-                )
-                // Add a new document with a generated ID
-                db.collection("users")
-                    .add(user)
-                    .addOnSuccessListener { documentReference ->
-                        Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w(TAG, "Error adding document", e)
-                    }
-
-
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("name", name)
+                val intent = Intent(this, Registration2::class.java)
                 startActivity(intent)
-                finish()
-
 
             } else {
                 Toast.makeText(this, "Singed Up Failed!", Toast.LENGTH_SHORT).show()
             }//closing else for is
         }//closing the auth
-
-
-
 
     }
 }

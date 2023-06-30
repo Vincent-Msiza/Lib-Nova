@@ -36,32 +36,11 @@
             android:textStyle="bold"
             tools:ignore="RtlCompat" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="text"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:hintAnimationEnabled="false"
-            app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSFullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_style"
-                android:ems="15"
-                android:hint="@string/full_name"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:ems="10"
@@ -74,18 +53,23 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:background="@drawable/et_style"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
                 android:ems="15"
                 android:hint="@string/email_address"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:ignore="VisualLintTextFieldSize"
+                android:minHeight="60dp"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:ems="10"
@@ -98,17 +82,21 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:background="@drawable/et_style"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
                 android:ems="15"
                 android:hint="@string/password"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:minHeight="60dp"
+                tools:ignore="VisualLintTextFieldSize" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:ems="10"
@@ -121,41 +109,72 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etSConfPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:background="@drawable/et_style"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
                 android:ems="15"
                 android:hint="@string/confirm_password"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                tools:ignore="VisualLintTextFieldSize,DuplicateSpeakableTextCheck"
+                android:minHeight="60dp"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/btnSSigned"
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/et_style"
-            android:text="@string/get_started"
-            android:textAllCaps="false"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            >
+
+            <Button
+                android:id="@+id/btnSSigned"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/et_style"
+                android:text="@string/get_started"
+                android:textAllCaps="false"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="VisualLintButtonSize" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <LinearLayout
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            tools:ignore="TextSizeCheck">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginRight="5dp"
-                android:text="Already have an account?"
+                android:layout_marginEnd="5dp"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="UnknownId" />
@@ -164,8 +183,6 @@
                 android:id="@+id/tvRedirectLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="@string/login"
                 android:textColor="@color/green"
                 android:textSize="16sp" />

@@ -7,10 +7,9 @@
     android:layout_marginTop="5dp"
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
-    tools:context=".HomeFragment">
+    tools:context=".HomeAdmin">
 
     <!-- TODO: Update blank fragment layout -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -67,26 +66,12 @@
                 android:text=""
                 android:textColor="#fff"
                 android:textSize="13sp"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/heart"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="@string/like_icon"
-            android:src="@drawable/ic_heart"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/bell"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -109,9 +94,12 @@
                 android:layout_height="280dp"
                 android:contentDescription="@string/Discover" />
 
+
+
         </LinearLayout>
 
     </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

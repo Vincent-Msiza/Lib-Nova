@@ -21,4 +21,31 @@
     <string name="you_successfully_registered">you successfully registered</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="see_all">See all</string>
+    <string name="authors_of_the_books">Authors of the books</string>
+    <string name="like_icon">Like icon</string>
+    <string name="notification_icon">Notification icon</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="hi_patron">Hi, Patron.</string>
+    <string name="lets_get_to_know_you_better">Lets get to know you better</string>
+    <string name="step_1_of_2">Step 1 of 2</string>
+    <string name="step_2_of_2">Step 2 of 2</string>
+    <string name="select_topics_that_interest_you">Select topics that interest you</string>
+    <string name="choose_your_interest">Choose your interest</string>
+    <string name="first_name">First Name</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="loveness">Loveness</string>
+    <string name="john">John</string>
+    <string name="smith">Smith</string>
+    <string name="next">Next</string>
+    <string name="_0712345678">0712345678</string>
+    <string name="viewall">viewall</string>
+    <string name="notifications">Notifications</string>
+    <string name="back_to_home">back to home</string>
+    <string name="msg">Hi Kelly welcome to lib-nova hope you gonna enjoy using the app.</string>
+    <string name="time">08:23</string>
+    <string name="lib_nova">Lib-Nova</string>
+    <string name="discover_read_and_connect">Discover, Read, and Connect</string>
 </resources>
