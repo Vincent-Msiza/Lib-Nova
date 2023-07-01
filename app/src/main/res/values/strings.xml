@@ -48,4 +48,7 @@
     <string name="time">08:23</string>
     <string name="lib_nova">Lib-Nova</string>
     <string name="discover_read_and_connect">Discover, Read, and Connect</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="add_categories">Add categories</string>
+    <string name="category">Category</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
@@ -32,13 +33,9 @@ class HomeAdmin : Fragment() {
 
     lateinit var next : ImageView
 
-    //for the image slider
-    private lateinit var viewPager: ViewPager
-    private lateinit var adapter: ImageSliderAdapter
-    private var currentPage = 0
-    private var timer: Timer? = null
-    private val DELAY_MS: Long = 3000 // Delay in milliseconds before auto sliding
-    private val PERIOD_MS: Long = 5000 // Interval in milliseconds for auto sliding
+    //for the dashboard
+    lateinit var addbooks: FrameLayout
+    lateinit var addCategories: FrameLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +60,8 @@ class HomeAdmin : Fragment() {
         auth = FirebaseAuth.getInstance()
         nameTextView = view.findViewById(R.id.name)
         next = view.findViewById(R.id.viewNotif)
+        addCategories = view.findViewById(R.id.tile1)
+        addbooks = view.findViewById(R.id.tile2)
 
         val firebaseuser = auth.currentUser
         val ref = FirebaseDatabase.getInstance().getReference("users")
@@ -84,44 +83,17 @@ class HomeAdmin : Fragment() {
             val intent = Intent(requireContext(), NotificationsAdmin::class.java)
             startActivity(intent)
         }
-
-        //image slider viewpager
-        viewPager = view.findViewById(R.id.viewPager)
-
-        val slides = listOf(
-            ImageSliderAdapter.Slide(R.drawable.sliderimageone, "Lib-Nova", "Discover, \n" +
-                    "Read, and Connect"),
-            ImageSliderAdapter.Slide(R.drawable.sliderimagetwo, "Lib-Nova", "Access a Vast \n" +
-                    "Collection of Books"),
-            ImageSliderAdapter.Slide(R.drawable.sliderimagethree, "Lib-Nova", "Easy Digital\n" +
-                    "Borrowing and Reading")
-        )
-
-        adapter = ImageSliderAdapter(requireContext(), slides)
-        viewPager.adapter = adapter
-
-        //Auto sliding
-        val handler = Handler()
-        val update = Runnable {
-            if (currentPage == slides.size) {
-                currentPage = 0
-            }
-            viewPager.setCurrentItem(currentPage++, true)
+        //for adding books and categories
+        addCategories.setOnClickListener{
+            val intent = Intent(requireContext(), AddCategories::class.java)
+            startActivity(intent)
+        }
+        addbooks.setOnClickListener{
+            val intent = Intent(requireContext(), AddBooks::class.java)
+            startActivity(intent)
         }
 
-        timer = Timer()
-        timer?.schedule(object : TimerTask() {
-            override fun run() {
-                handler.post(update)
-            }
-        }, DELAY_MS, PERIOD_MS)
 
 
     }
-
-
-
-
-
-
     }
