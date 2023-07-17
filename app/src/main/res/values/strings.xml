@@ -51,4 +51,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="add_categories">Add categories</string>
     <string name="category">Category</string>
+    <string name="categories">Categories</string>
+    <string name="books">Books</string>
+    <string name="search">Search</string>
 </resources>

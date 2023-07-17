@@ -8,11 +8,18 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="Lib-Nova"
+        android:name=".MyApplication"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".CategoriesAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".BooksAdmin"
+            android:exported="false" />
         <activity
             android:name=".AddBooks"
             android:exported="false" />
@@ -24,9 +31,6 @@
             android:exported="false" />
         <activity
             android:name=".Admin"
-            android:exported="false" />
-        <activity
-            android:name=".admin"
             android:exported="false" />
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.

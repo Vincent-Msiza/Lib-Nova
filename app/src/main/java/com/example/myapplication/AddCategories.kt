@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
@@ -32,7 +33,7 @@ class AddCategories : AppCompatActivity() {
 
         //configure back to home
         back.setOnClickListener{
-            val intent = Intent(this, Admin::class.java)
+            val intent = Intent(this, CategoriesAdmin::class.java)
             startActivity(intent)
             finish()
         }
@@ -65,11 +66,14 @@ class AddCategories : AppCompatActivity() {
                     .setValue(hashMap)
                     .addOnSuccessListener {
                         Toast.makeText(this, "category is successfully added", Toast.LENGTH_SHORT).show()
-
+                        input.text!!.clear()
                     }
                     .addOnFailureListener{
                         Toast.makeText(this, "Failed to add category", Toast.LENGTH_SHORT).show()
                     }
+
+
+
             }
 
 
@@ -80,3 +84,6 @@ class AddCategories : AppCompatActivity() {
     }
 
 }
+
+
+

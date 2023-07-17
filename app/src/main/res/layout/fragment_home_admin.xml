@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:padding="8dp"
-                        android:text="@string/add_categories"
+                        android:text="@string/categories"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -155,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:padding="8dp"
-                        android:text="Add books"
+                        android:text="@string/books"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp"
                         android:textStyle="bold" />

@@ -32,8 +32,8 @@ android {
         jvmTarget = '1.8'
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 
 
@@ -52,10 +52,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
     implementation 'com.google.firebase:firebase-database:20.2.2'
     implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
-    implementation 'com.google.firebase:firebase-messaging:23.1.0'
-    implementation 'androidx.test:core-ktx:1.4.0'
+    implementation 'com.google.firebase:firebase-messaging:23.1.2'
+    implementation 'androidx.test:core-ktx:1.5.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -67,6 +67,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+
+    //pdf viewer
+    // AndroidPdfViewer for displaying PDF files
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
 }

@@ -34,7 +34,7 @@ class HomeAdmin : Fragment() {
     lateinit var next : ImageView
 
     //for the dashboard
-    lateinit var addbooks: FrameLayout
+    lateinit var books: FrameLayout
     lateinit var addCategories: FrameLayout
 
 
@@ -61,7 +61,7 @@ class HomeAdmin : Fragment() {
         nameTextView = view.findViewById(R.id.name)
         next = view.findViewById(R.id.viewNotif)
         addCategories = view.findViewById(R.id.tile1)
-        addbooks = view.findViewById(R.id.tile2)
+        books = view.findViewById(R.id.tile2)
 
         val firebaseuser = auth.currentUser
         val ref = FirebaseDatabase.getInstance().getReference("users")
@@ -85,11 +85,11 @@ class HomeAdmin : Fragment() {
         }
         //for adding books and categories
         addCategories.setOnClickListener{
-            val intent = Intent(requireContext(), AddCategories::class.java)
+            val intent = Intent(requireContext(), CategoriesAdmin::class.java)
             startActivity(intent)
         }
-        addbooks.setOnClickListener{
-            val intent = Intent(requireContext(), AddBooks::class.java)
+        books.setOnClickListener{
+            val intent = Intent(requireContext(), BooksAdmin::class.java)
             startActivity(intent)
         }
 

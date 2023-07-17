@@ -71,7 +71,7 @@ class AddBooks : AppCompatActivity() {
 
         //configure back to home
         back.setOnClickListener{
-            val intent = Intent(this, Admin::class.java)
+            val intent = Intent(this, BooksAdmin::class.java)
             startActivity(intent)
             finish()
         }
