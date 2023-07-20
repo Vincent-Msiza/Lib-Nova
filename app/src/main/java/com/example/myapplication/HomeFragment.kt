@@ -110,19 +110,11 @@ class HomeFragment : Fragment() {
                     val username = snapshot.child("name").value
                     val greeting = "Hey, $username"
                     nameTextView.text = greeting
-
-
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
-
-
-            }
-
-
-            )
+            })
 
         //moving to the notifications
         next.setOnClickListener {
