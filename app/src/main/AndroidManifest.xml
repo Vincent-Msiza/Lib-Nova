@@ -4,16 +4,19 @@
     tools:ignore="ExtraText">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="Lib-Nova"
-        android:name=".MyApplication"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".PdfDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".CategoriesAdmin"
             android:exported="false" />

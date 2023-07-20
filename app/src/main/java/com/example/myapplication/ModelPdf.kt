@@ -6,7 +6,6 @@ class ModelPdf {
     var id:String = ""
     var title:String= ""
     var description:String = ""
-    var author:String = ""
     var categoryId:String= ""
     var url:String = ""
     var timestamp: Long =0
@@ -16,15 +15,11 @@ class ModelPdf {
     //empty constructor (required by firebase)
     constructor()
     //parameterized constructor
-
-
-
     constructor(
         uid: String,
         id: String,
         title: String,
         description: String,
-        author: String,
         categoryId: String,
         url: String,
         timestamp: Long,
@@ -35,16 +30,10 @@ class ModelPdf {
         this.id = id
         this.title = title
         this.description = description
-        this.author = author
         this.categoryId = categoryId
         this.url = url
         this.timestamp = timestamp
         this.viewsCount = viewsCount
         this.downloadsCount = downloadsCount
     }
-
-
-
-
-
 }

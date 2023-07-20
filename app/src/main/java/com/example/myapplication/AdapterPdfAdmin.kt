@@ -9,76 +9,99 @@ import android.widget.Filterable
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.RowPdfAdminBinding
 import com.github.barteksc.pdfviewer.PDFView
 
-class AdapterPdfAdmin( private val context: Context, public var pdfArrayList: ArrayList<ModelPdf>
-) : RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>(), Filterable {
+class AdapterPdfAdmin :RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>, Filterable{
+    //context
+    private var context: Context
+    //arraylist to hold pdfs
+    public var pdfArrayList: ArrayList<ModelPdf>
+    private val filterList: ArrayList<ModelPdf>
+
+    //viewBinding
+    private lateinit var binding:RowPdfAdminBinding
+
+    //filter object
+    var filter: FilterPdfAdmin? = null
+
     //constructor
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.row_pdf_admin, parent, false)
-
-        return ViewHolder(itemView)
+    constructor(context: Context, pdfArrayList: ArrayList<ModelPdf>) : super() {
+        this.context = context
+        this.pdfArrayList = pdfArrayList
+        this.filterList = pdfArrayList
     }
 
 
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        //bind/inflate layout row_pdf_admin
+        binding = RowPdfAdminBinding.inflate(LayoutInflater.from(context), parent, false)
+
+        return  ViewHolder(binding.root)
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        get data, set data, handle click etc
+
         //get data
         val model = pdfArrayList[position]
         val pdfId = model.id
         val categoryId = model.categoryId
         val title = model.title
         val description = model.description
-        val author = model.author
         val pdfUrl = model.url
         val timestamp = model.timestamp
 
         //convert timestamp to dd/mm/yyy format
         val formattedDate = MyApplication.formatTimeStamp(timestamp)
-        //lets create an application class that will contain the functions that will be used multiple times
 
         //set data
         holder.titleTv.text = title
         holder.descriptionTv.text = description
         holder.dateTv.text = formattedDate
-        holder.authorTv.text = author
 
         //load further details like category, pdf from url and pdf size
 
         //categoryID
         MyApplication.loadCategory(categoryId, holder.categoryTv)
 
-            //we don't need page number so we pass null
-        MyApplication.loadPdfFromUrlSinglePage(pdfUrl,title,author, holder.pdfView, holder.progressBar, pagesTv = null)
+        //we don't need page number so we pass null
+        MyApplication.loadPdfFromUrlSinglePage(pdfUrl, title, holder.pdfView,holder.progressBar, null)
 
         //load pdf size
         MyApplication.loadPdfSize(pdfUrl, title, holder.sizeTv)
+
+
+
+
 
     }
 
     override fun getItemCount(): Int {
         return pdfArrayList.size //items count
-
     }
+
 
 
     override fun getFilter(): Filter {
-        TODO("Not yet implemented")
+        if (filter == null){
+            filter = FilterPdfAdmin(filterList, this)
+        }
+        return filter as FilterPdfAdmin
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val pdfView = itemView.findViewById<PDFView>(R.id.pdfView)!!
-        val progressBar = itemView.findViewById<PDFView>(R.id.progressBar)!!
-        val titleTv = itemView.findViewById<TextView>(R.id.titleTv)!!
-        val descriptionTv = itemView.findViewById<TextView>(R.id.descriptionTv)!!
-        val categoryTv = itemView.findViewById<TextView>(R.id.categoryTv)!!
-        val authorTv = itemView.findViewById<TextView>(R.id.authorTv)!!
-        val sizeTv = itemView.findViewById<TextView>(R.id.sizeTv)!!
-        val dateTv = itemView.findViewById<TextView>(R.id.dateTv)!!
-        val moreBtn = itemView.findViewById<ImageButton>(R.id.moreBtn)!!
-    }
 
+        val pdfView = binding.pdfView
+        val progressBar = binding.progressBar
+        val titleTv = binding.titleTv
+        val descriptionTv = binding.descriptionTv
+        val categoryTv = binding.categoryTv
+        val sizeTv = binding.sizeTv
+        val dateTv = binding.dateTv
+        val moreBtn = binding.moreBtn
+
+    }
 
 }

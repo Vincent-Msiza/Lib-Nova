@@ -49,12 +49,29 @@
 
     </RelativeLayout>
 
-<!--    pdf/book list-->
+    <!--    search-->
+    <EditText
+        android:id="@+id/searchEt"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/toolbar1"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/et_style"
+        android:drawableStart="@drawable/ic_search"
+        android:padding="10dp"
+        android:hint="Search"
+        />
+
+    <!--    -->
+
+    <!--    pdf/book list-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/booksRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar1"
+        android:layout_below="@+id/searchEt"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"

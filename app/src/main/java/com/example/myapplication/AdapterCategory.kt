@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
 
-class AdapterCategory(private val context: Context, public var categoryArrayList: ArrayList<ModelCategory>,
+class AdapterCategory(private val context: Context, var categoryArrayList: ArrayList<ModelCategory>,
                       private var filterList: ArrayList<ModelCategory> = ArrayList(categoryArrayList),
                       private var filter: FilterCategory? = null
                       ) : RecyclerView.Adapter<AdapterCategory.ViewHolder>(), Filterable {
@@ -44,12 +44,12 @@ class AdapterCategory(private val context: Context, public var categoryArrayList
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Delete")
                 .setMessage("Are you sure you want to delete this category")
-                .setPositiveButton("Confirm"){a, d->
+                .setPositiveButton("Confirm"){ _, _ ->
                    Toast.makeText(context, "Deleting...", Toast.LENGTH_SHORT).show()
 
                     deleteCategory(model, holder)
                 }
-                .setNegativeButton("cancel"){a, d->
+                .setNegativeButton("cancel"){ a, _ ->
                     a.dismiss()
                 }
                 .show()
@@ -92,13 +92,6 @@ class AdapterCategory(private val context: Context, public var categoryArrayList
             inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 val categoryTv: TextView = itemView.findViewById(R.id.categoryTv)
                 val deleteBtn: ImageButton = itemView.findViewById(R.id.deleteBtn)
-
-
-
-
-
-
-
             }
 
     override fun getFilter(): Filter {
