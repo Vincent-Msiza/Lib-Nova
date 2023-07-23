@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import java.util.logging.Filter
 import java.util.logging.LogRecord
 
@@ -52,6 +53,7 @@ class FilterCategory: android.widget.Filter {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun publishResults(contraint: CharSequence?, results: FilterResults?) {
        //apply filter changes
         adapterCategory.categoryArrayList = results?.values as ArrayList<ModelCategory>

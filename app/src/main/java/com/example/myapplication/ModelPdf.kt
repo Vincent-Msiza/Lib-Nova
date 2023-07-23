@@ -14,6 +14,7 @@ class ModelPdf {
 
     //empty constructor (required by firebase)
     constructor()
+
     //parameterized constructor
     constructor(
         uid: String,

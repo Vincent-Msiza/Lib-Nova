@@ -3,11 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="#f5f5f5"
     android:layout_marginBottom="5dp"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
-    app:contentPadding="5dp">
+    app:contentPadding="5dp"
+
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,15 +18,13 @@
         <!--    To show pdf and progress fro pdf load-->
         <RelativeLayout
             android:id="@+id/pdfRl"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="120dp"
-            android:background="@color/grey"
-            android:layout_marginEnd="5dp"
-            >
+            android:layout_marginEnd="5dp">
             <!--        pdfView-->
             <com.github.barteksc.pdfviewer.PDFView
                 android:id="@+id/pdfView"
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 />
 
@@ -36,6 +36,7 @@
                 />
 
         </RelativeLayout>
+
 <!--        textview: Book title-->
         <TextView
             android:id="@+id/titleTv"
@@ -47,38 +48,48 @@
             android:ellipsize="end"
             android:maxLines="1"
             />
-        <!--        textview: Book Description-->
-        <TextView
-            android:id="@+id/descriptionTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Body2"
-            android:text="Book description"
-            android:layout_toEndOf="@+id/pdfRl"
-            android:layout_below="@+id/titleTv"
-            android:maxLines="4"
-            android:layout_marginTop="8dp"
-            android:ellipsize="end"
-            />
 
         <!--        textview: Book Category-->
         <TextView
             android:id="@+id/categoryTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/pdfRl"
+            android:layout_below="@+id/titleTv"
+            android:background="@drawable/style"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:textColor="@color/blue"
+            android:textAlignment="center"
             style="@style/TextAppearance.MaterialComponents.Caption"
-            android:text="Category"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:text="test"
             android:maxLines="1"
             />
+
+
+        <!--        textview: Book Description-->
+        <TextView
+            android:id="@+id/descriptionTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book description"
+            android:layout_toEndOf="@+id/pdfRl"
+            android:layout_below="@+id/categoryTv"
+            android:maxLines="2"
+            android:ellipsize="end"
+            />
+
+
         <!--        textview: Book size in KB/MB/Bytes-->
         <TextView
             android:id="@+id/sizeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Caption"
-            android:text="14 MB"
+            android:text=""
             android:layout_toEndOf="@+id/pdfRl"
             android:maxLines="1"
             android:layout_alignParentBottom="true"
@@ -92,7 +103,7 @@
             style="@style/TextAppearance.MaterialComponents.Caption"
             android:layout_toEndOf="@+id/sizeTv"
             android:layout_toStartOf="@+id/categoryTv"
-            android:text="dd/MM/yyyy"
+            android:text=""
             android:layout_alignParentBottom="true"
             android:textAlignment="center"
             />

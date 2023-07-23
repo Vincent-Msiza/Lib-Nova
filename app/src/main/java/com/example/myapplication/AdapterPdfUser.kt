@@ -62,7 +62,7 @@ class AdapterPdfUser : RecyclerView.Adapter<AdapterPdfUser.HolderPdfUser>, Filte
         //set data
         holder.titleTv.text = title
         holder.descriptionTv.text = description
-        holder.dateTv.text = date
+//        holder.dateTv.text = date
 
         MyApplication.loadPdfFromUrlSinglePage(url, title, holder.pdfView, holder.progressBar, null) //no nned for number of pages
 

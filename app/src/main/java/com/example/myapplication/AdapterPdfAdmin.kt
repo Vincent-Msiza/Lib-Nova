@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +25,7 @@ class AdapterPdfAdmin :RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>, Filtera
     private lateinit var binding:RowPdfAdminBinding
 
     //filter object
-    var filter: FilterPdfAdmin? = null
+    private var filter: FilterPdfAdmin? = null
 
     //constructor
     constructor(context: Context, pdfArrayList: ArrayList<ModelPdf>) : super() {
@@ -59,7 +61,7 @@ class AdapterPdfAdmin :RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>, Filtera
         //set data
         holder.titleTv.text = title
         holder.descriptionTv.text = description
-        holder.dateTv.text = formattedDate
+//        holder.dateTv.text = formattedDate
 
         //load further details like category, pdf from url and pdf size
 
@@ -72,9 +74,47 @@ class AdapterPdfAdmin :RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>, Filtera
         //load pdf size
         MyApplication.loadPdfSize(pdfUrl, title, holder.sizeTv)
 
+        //handle click show dialog with options edit book and delete book
+        holder.moreBtn.setOnClickListener {
+            moreOptionsDialog(model, holder)
+        }
+        //handle item click to open pdfDetails activity
+        holder.itemView.setOnClickListener {
+            //intent with book id
+            val intent = Intent(context, PdfDetailActivity::class.java)
+            intent.putExtra("bookId", pdfId)
+            context.startActivity(intent)
+        }
 
+    }
 
+    private fun moreOptionsDialog(model: ModelPdf, holder: AdapterPdfAdmin.ViewHolder) {
+    //get id, url title of the books
+        val bookId = model.id
+        val bookUrl = model.url
+        val bookTitle = model.title
 
+        //options to show in dialog
+        val options = arrayOf("Edit", "Delete")
+
+        //alert dialog
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Choose Option")
+            .setItems(options){dialog, position->
+                //handle item
+                if (position==0){
+                    //Edit is clicked
+                    val intent = Intent(context, PdfEditActivity::class.java)
+                    intent.putExtra("bookId", bookId)
+                    context.startActivity(intent)
+                }
+                else if(position == 1){
+                    //delete is clicked
+                    MyApplication.deleteBooks(context, bookId, bookUrl, bookTitle)
+                }
+
+            }
+            .show()
 
     }
 

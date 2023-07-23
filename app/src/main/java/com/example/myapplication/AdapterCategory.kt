@@ -12,20 +12,30 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.NewCategoryBinding
 import com.google.firebase.database.FirebaseDatabase
 
-class AdapterCategory(private val context: Context, var categoryArrayList: ArrayList<ModelCategory>,
-                      private var filterList: ArrayList<ModelCategory> = ArrayList(categoryArrayList),
-                      private var filter: FilterCategory? = null
-                      ) : RecyclerView.Adapter<AdapterCategory.ViewHolder>(), Filterable {
+class AdapterCategory : RecyclerView.Adapter<AdapterCategory.ViewHolder>,Filterable{
+
+    private val context: Context
+    public var categoryArrayList: ArrayList<ModelCategory>
+    private lateinit var binding: NewCategoryBinding
+
+    private var filterList: ArrayList<ModelCategory>
+    //filter variable
+    private var filter: FilterCategory? = null
     //constructor
+    constructor(context: Context, categoryArrayList: ArrayList<ModelCategory>){
+        this.context = context
+        this.categoryArrayList = categoryArrayList
+        this.filterList = categoryArrayList
+    }
 
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-                val itemView = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.new_category, parent, false)
-
-                return ViewHolder(itemView)
-            }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.new_category, parent, false)
+        return ViewHolder(itemView)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = categoryArrayList[position]
@@ -85,10 +95,7 @@ class AdapterCategory(private val context: Context, var categoryArrayList: Array
     override fun getItemCount(): Int {
         return categoryArrayList.size //number of items in list
     }
-
-
             // Other methods...
-
             inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 val categoryTv: TextView = itemView.findViewById(R.id.categoryTv)
                 val deleteBtn: ImageButton = itemView.findViewById(R.id.deleteBtn)

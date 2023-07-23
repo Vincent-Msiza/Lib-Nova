@@ -19,6 +19,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.test.runner.lifecycle.ActivityLifecycleCallback
+import com.example.myapplication.databinding.ActivityAddBooksBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -29,7 +30,8 @@ import com.google.firebase.storage.FirebaseStorage
 
 class AddBooks : AppCompatActivity() {
 
-    private lateinit var back: ImageView
+    private lateinit var binding: ActivityAddBooksBinding
+
     private lateinit var book: EditText
     private lateinit var bookOne: EditText
     private lateinit var bookTwo: EditText
@@ -46,32 +48,21 @@ class AddBooks : AppCompatActivity() {
     private val TAG = "PDF_ADD_TAG"
 
     //importing the textview from the ui
-    lateinit var categoryTV: TextView
-    lateinit var attach: LinearLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_books)
+        binding = ActivityAddBooksBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        back = findViewById(R.id.backToHome)
-        categoryTV = findViewById(R.id.categoryTv)
-        attach = findViewById(R.id.attachPdfBtn)
         book = findViewById(R.id.titleEt)
         bookOne = findViewById(R.id.descriptionEt)
         bookTwo = findViewById(R.id.authorEt)
-        submit = findViewById(R.id.submitBtn)
-
-
 
         //handle click call back
-
-
-
-
         //configure back to home
-        back.setOnClickListener{
-            val intent = Intent(this, BooksAdmin::class.java)
+       binding.backToHome.setOnClickListener{
+            val intent = Intent(this, Admin::class.java)
             startActivity(intent)
             finish()
         }
@@ -81,19 +72,19 @@ class AddBooks : AppCompatActivity() {
         loadPdfCategories()
 
         //handle click, show category pick dialog
-        categoryTV.setOnClickListener{
+        binding.categoryTv.setOnClickListener{
             categoryPickDialog()
         }
 
-
         //handle click, pick pdf intent
-        attach.setOnClickListener {
+       binding.attachPdfBtn.setOnClickListener {
             pdfPickIntent()
         }
 
         //handle click, pick pdf and start uploading pdf
-        submit.setOnClickListener{
+        binding.submitBtn.setOnClickListener{
             validateData()
+
         }
 
     }
@@ -110,7 +101,7 @@ class AddBooks : AppCompatActivity() {
         title = book.text.toString().trim()
         description = bookOne.text.toString().trim()
         author = bookTwo.text.toString().trim()
-        category = categoryTV.text.toString().trim()
+        category = binding.categoryTv.text.toString().trim()
 
         //validate data
         if (title.isEmpty()){
@@ -257,7 +248,7 @@ class AddBooks : AppCompatActivity() {
                 selectedCategoryTitle = categoryArrayList[which].category
                 selectedCategoryId = categoryArrayList[which].id
                 //set category to textview
-                categoryTV.text = selectedCategoryTitle
+                binding.categoryTv.text = selectedCategoryTitle
 
                 Log.d(TAG, "categoryPickDialog: Selected category ID: $selectedCategoryId")
                 Log.d(TAG, "categoryPickDialog: Selected category Tittle: $selectedCategoryTitle")

@@ -69,36 +69,39 @@ class BooksAdmin : AppCompatActivity() {
         }
 
         //get from intent that we passed from adapter
-//        val intent = intent
-//        categoryId = intent.getStringExtra("categoryId")!!
-//        category = intent.getStringExtra("category")!!
+        val intent = intent
+        categoryId = intent.getStringExtra("categoryId").toString()
+        category = intent.getStringExtra("category").toString()
 
         //set pdf category
 
+
         //loadPdf list
         loadPdfList()
+
         //search
-        search = findViewById(R.id.searchEt)
-        //search
-        search.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
-            }
+        binding.searchEt.addTextChangedListener(textWatcher)
+    }
 
-            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //filter data
-                try {
-                    adapterPdfAdmin.filter!!.filter(s)
-                }
-                catch (e: Exception){
-                    Log.d(TAG, "onTextChanged: ${e.message}")
+    private val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            // Implement the logic you want to perform before the text changes.
+        }
 
-                }
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            // Implement the logic you want to perform when the text changes.
+            try {
+                adapterPdfAdmin.filter!!.filter(s)
             }
+            catch (e: Exception){
+                Log.d(TAG, "onTextChanged: ${e.message}")
 
-            override fun afterTextChanged(p0: Editable?) {
             }
-        })
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            // Implement the logic you want to perform after the text changes.
+        }
     }
 
     private fun loadPdfList() {
@@ -122,7 +125,7 @@ class BooksAdmin : AppCompatActivity() {
                     }
                     //setup adapter
                     adapterPdfAdmin = AdapterPdfAdmin(this@BooksAdmin, pdfArrayList)
-                    booksRv.adapter =adapterPdfAdmin
+                    binding.booksRv.adapter = adapterPdfAdmin
 
                 }
                 override fun onCancelled(error: DatabaseError) {

@@ -50,6 +50,10 @@
     </RelativeLayout>
 
 <!--    search bar-->
+
+
+
+
 <!--    categories -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRv"
@@ -60,9 +64,6 @@
         android:layout_margin="5dp"
         tools:listitem="@layout/new_category"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-
-
 <!--    bottom layout-->
     <LinearLayout
         android:id="@+id/bottomLl"
@@ -90,9 +91,6 @@
             android:textColor="@color/blue"
             android:textStyle="bold"
             />
-
-<!--        add -->
-
     </LinearLayout>
 
 

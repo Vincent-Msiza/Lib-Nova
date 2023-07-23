@@ -33,7 +33,7 @@ class AddCategories : AppCompatActivity() {
 
         //configure back to home
         back.setOnClickListener{
-            val intent = Intent(this, CategoriesAdmin::class.java)
+            val intent = Intent(this, Admin::class.java)
             startActivity(intent)
             finish()
         }

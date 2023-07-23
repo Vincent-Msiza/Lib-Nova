@@ -6,39 +6,112 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+
     <RelativeLayout
+        android:id="@+id/headerRl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         >
-
-        <ImageView
-            android:id="@+id/logoIv"
-            android:layout_width="54dp"
-            android:layout_height="52dp"
-            android:contentDescription="@string/our_logo"
-            android:src="@drawable/logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/nameTv"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:text=""
-            android:layout_toEndOf="@+id/logoIv"
-            android:textColor="@color/blue" />
-
         <ImageButton
             android:id="@+id/menuIb"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@color/white"
+            android:src="@drawable/ep_menu"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:contentDescription="@string/menu_btn" />
+        <TextView
+            android:id="@+id/menuTv"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:text="Menu"
+            android:gravity="center"
+            android:layout_toEndOf="@+id/menuIb"
+            android:textColor="@color/blue" />
+
+        <ImageView
+            android:id="@+id/notificationsIv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:background="@color/grey"
-            android:src="@drawable/ep_menu"
-            tools:ignore="SpeakableTextPresentCheck" />
-
+            android:contentDescription="@string/our_logo"
+            android:src="@drawable/teenyicons_bell_solid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/nameTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerRl"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingStart="15dp"
+        android:text="Hello, Vinciey"
+        android:textColor="@color/blue"
+        android:textSize="16sp"/>
+
+    <!--Recycler View widget-->
+
+    <EditText
+        android:id="@+id/searchEt"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/nameTv"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/et_search"
+        android:drawableStart="@drawable/baseline_search_24"
+        android:hint="Search"
+        android:padding="10dp"
+        android:textColor="@color/black" />
+
+    <!--    show book categories-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchEt"
+        android:contentDescription="@string/Discover"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Caption"
+        />
+    <!--    view pager -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/tabLayout"
+        android:contentDescription="@string/Discover" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/novaFa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:backgroundTint="@color/green"
+        android:src="@drawable/baseline_android_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>
