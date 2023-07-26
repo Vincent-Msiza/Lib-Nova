@@ -5,6 +5,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -50,13 +53,15 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-        binding.menuIb.setOnClickListener {
-            val intent = Intent(this, MenuUsers::class.java)
-            startActivity(intent)
-        }
-
         setupWithViewPagerAdapter(binding.viewPager)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
+
+        //open the slider menu
+        binding.layoutDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+        binding.menuIb.setOnClickListener {
+            binding.layoutDrawer.visibility = View.VISIBLE
+        }
 
 
     }

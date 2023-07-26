@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-
-
     <RelativeLayout
         android:id="@+id/headerRl"
         android:layout_width="match_parent"
@@ -113,5 +107,29 @@
         android:backgroundTint="@color/green"
         android:src="@drawable/baseline_android_24"
         tools:ignore="SpeakableTextPresentCheck" />
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/layoutDrawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/menu"
+        android:visibility="invisible"
+        >
+
+        <FrameLayout
+            android:layout_width="300dp"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/sliderMenu"
+                android:name="com.example.myapplication.SideMenuFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_side_menu" />
+
+        </FrameLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </RelativeLayout>
