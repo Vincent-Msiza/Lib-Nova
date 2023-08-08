@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/onboarding"
-    tools:context=".OnBoarding"
+    tools:context=".UserAuth.OnBoarding"
     android:padding="45dp"
     >
 

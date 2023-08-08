@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".UserSide.MainActivity">
 
     <RelativeLayout
         android:id="@+id/headerRl"
@@ -123,7 +123,7 @@
 
             <fragment
                 android:id="@+id/sliderMenu"
-                android:name="com.example.myapplication.SideMenuFragment"
+                android:name="com.example.myapplication.UserSide.SideMenuFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:layout="@layout/fragment_side_menu" />

@@ -4,7 +4,7 @@
     tools:ignore="ExtraText">
 
     <application
-        android:name=".MyApplication"
+        android:name=".Classes.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
+        <activity
+            android:name=".UserSide.Homeforuser"
+            android:exported="false" />
         <activity
             android:name=".MenuActicity"
             android:exported="false"
@@ -29,31 +32,31 @@
             android:name=".PdfDetail"
             android:exported="false" />
         <activity
-            android:name=".PdfEditActivity"
+            android:name=".AdminSide.PdfEditActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuUsers"
+            android:name=".UserSide.MenuUsers"
             android:exported="false" />
         <activity
             android:name=".PdfDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".CategoriesAdmin"
+            android:name=".AdminSide.CategoriesAdmin"
             android:exported="false" />
         <activity
-            android:name=".BooksAdmin"
+            android:name=".AdminSide.BooksAdmin"
             android:exported="false" />
         <activity
-            android:name=".AddBooks"
+            android:name=".AdminSide.AddBooks"
             android:exported="false" />
         <activity
-            android:name=".AddCategories"
+            android:name=".AdminSide.AddCategories"
             android:exported="false" />
         <activity
-            android:name=".NotificationsAdmin"
+            android:name=".AdminSide.NotificationsAdmin"
             android:exported="false" />
         <activity
-            android:name=".Admin"
+            android:name=".AdminSide.Admin"
             android:exported="false" />
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -74,29 +77,29 @@
             android:name=".Registration3"
             android:exported="false" />
         <activity
-            android:name=".Registration2"
+            android:name=".UserAuth.Registration2"
             android:exported="false" />
         <activity
-            android:name=".RSuccess"
+            android:name=".UserAuth.RSuccess"
             android:exported="false"
             android:noHistory="true" />
         <activity
-            android:name=".Forgotpassword"
+            android:name=".UserAuth.Forgotpassword"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".UserAuth.Login"
             android:exported="false"
             android:noHistory="true" />
         <activity
-            android:name=".Registration"
+            android:name=".UserAuth.Registration"
             android:exported="false"
             android:noHistory="true" />
         <activity
-            android:name=".OnBoarding"
+            android:name=".UserAuth.OnBoarding"
             android:exported="false"
             android:noHistory="true" />
         <activity
-            android:name=".Splashscreen"
+            android:name=".UserAuth.Splashscreen"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
@@ -106,14 +109,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".UserSide.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity> <!-- Add here -->
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".Classes.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
