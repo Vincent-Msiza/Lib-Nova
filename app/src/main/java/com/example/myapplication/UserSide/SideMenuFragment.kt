@@ -26,17 +26,6 @@ class SideMenuFragment : Fragment() {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_side_menu, container, false)
 
-        //find the cancel btn
-        cancel = requireView().findViewById(R.id.cancelIv)
-        //on click to make the menu disappear
-        cancel.setOnClickListener {
-            removeFragmentFromContainer()
-        }
-
-
-
-        findView()
-        setListener()
 
         return rootView
     }

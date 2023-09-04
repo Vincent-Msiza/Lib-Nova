@@ -29,7 +29,7 @@ class BooksAdmin : AppCompatActivity() {
     private lateinit var booksRv : RecyclerView
     private lateinit var search: EditText
 
-    private companion object{
+    companion object{
         const val TAG = "PDF_LIST_TAG"
     }
 

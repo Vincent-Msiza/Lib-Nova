@@ -1,6 +1,8 @@
-package com.example.myapplication.UserSide
+package com.example.myapplication
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +26,7 @@ class BooksUserFragment : Fragment {
         private const val TAG = "BOOKS_USER_TAG"
 
         //receive data from activity to load books e.g categoryID, category, uid
-        public fun newInstance(categoryId: String, category: String, uid: String): BooksUserFragment {
+        public fun newInstance(categoryId: String, category: String, uid: String): BooksUserFragment{
             val fragment = BooksUserFragment()
             //put data to bundle intent
             val args = Bundle()
@@ -108,7 +110,7 @@ class BooksUserFragment : Fragment {
     }
 
     private fun loadAllBooks() {
-       //init list
+        //init list
         pdfArrayList = ArrayList()
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.addValueEventListener(object : ValueEventListener{
@@ -139,25 +141,25 @@ class BooksUserFragment : Fragment {
         val ref = FirebaseDatabase.getInstance().getReference("Books")
         ref.orderByChild(orderBY).limitToLast(10)//load most views or most downloaded books
             .addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                //clear list before starting adding data into it
-                pdfArrayList.clear()
-                for (ds in snapshot.children){
-                    //get data
-                    val model = ds.getValue(ModelPdf::class.java)
-                    //add tp list
-                    pdfArrayList.add(model!!)
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //clear list before starting adding data into it
+                    pdfArrayList.clear()
+                    for (ds in snapshot.children){
+                        //get data
+                        val model = ds.getValue(ModelPdf::class.java)
+                        //add tp list
+                        pdfArrayList.add(model!!)
+                    }
+                    //setup adapter
+                    adapterPdfUser = AdapterPdfUser(context!!, pdfArrayList)
+                    //set adapter to recycleView
+                    binding.booksRv.adapter = adapterPdfUser
                 }
-                //setup adapter
-                adapterPdfUser = AdapterPdfUser(context!!, pdfArrayList)
-                //set adapter to recycleView
-                binding.booksRv.adapter = adapterPdfUser
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
 
     }
 

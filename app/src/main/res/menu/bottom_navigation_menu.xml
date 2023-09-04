@@ -11,10 +11,6 @@
         android:title="Search"
         />
     <item
-        android:id="@+id/nova"
-        android:icon="@drawable/nova"
-        android:title="" />
-    <item
         android:id="@+id/book"
         android:icon="@drawable/library"
         android:title="Library" />

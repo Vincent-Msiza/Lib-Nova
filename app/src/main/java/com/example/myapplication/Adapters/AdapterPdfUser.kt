@@ -19,8 +19,8 @@ class AdapterPdfUser : RecyclerView.Adapter<AdapterPdfUser.HolderPdfUser>, Filte
     //context, get using constructor
     private var context: Context
     //arraylist to hold pdfs, get using constructor
-     public var pdfArrayList: ArrayList<ModelPdf>
-     //array to hold the filtered pdfs
+    public var pdfArrayList: ArrayList<ModelPdf>
+    //array to hold the filtered pdfs
     public var filterList: ArrayList<ModelPdf>
     //viewBinding row_pdf_user.xml
     private lateinit var binding: RowPdfUserBinding
@@ -35,7 +35,7 @@ class AdapterPdfUser : RecyclerView.Adapter<AdapterPdfUser.HolderPdfUser>, Filte
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HolderPdfUser {
-       //inflate/bind the layout row_pdf_user.xml
+        //inflate/bind the layout row_pdf_user.xml
         binding = RowPdfUserBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return  HolderPdfUser(binding.root)
@@ -48,7 +48,7 @@ class AdapterPdfUser : RecyclerView.Adapter<AdapterPdfUser.HolderPdfUser>, Filte
     override fun onBindViewHolder(holder: HolderPdfUser, position: Int) {
 
         //get data set data and handle click
-      //get data
+        //get data
         val model = pdfArrayList[position]
         val bookId = model.id
         val categoryId = model.categoryId
@@ -66,13 +66,7 @@ class AdapterPdfUser : RecyclerView.Adapter<AdapterPdfUser.HolderPdfUser>, Filte
         holder.descriptionTv.text = description
 //        holder.dateTv.text = date
 
-        MyApplication.loadPdfFromUrlSinglePage(
-            url,
-            title,
-            holder.pdfView,
-            holder.progressBar,
-            null
-        ) //no nned for number of pages
+        MyApplication.loadPdfFromUrlSinglePage(url, title, holder.pdfView, holder.progressBar, null) //no nned for number of pages
 
         MyApplication.loadCategory(categoryId, holder.categoryTv)
 
@@ -88,24 +82,24 @@ class AdapterPdfUser : RecyclerView.Adapter<AdapterPdfUser.HolderPdfUser>, Filte
         }
     }
     override fun getFilter(): Filter {
-       if (filter == null){
-           filter = FilterPdfUser(filterList, this)
-       }
+        if (filter == null){
+            filter = FilterPdfUser(filterList, this)
+        }
         return filter as FilterPdfUser
     }
 
     //    viewHolder class roe_pdf_user.xml
-        inner class HolderPdfUser(itemView: View): RecyclerView.ViewHolder(itemView){
-            //init UI components of row_pdf_user.xml
-            var pdfView = binding.pdfView
-            var progressBar = binding.progressBar
-            var categoryTv = binding.categoryTv
-            var titleTv = binding.titleTv
-            var descriptionTv = binding.descriptionTv
-            var sizeTv = binding.sizeTv
-            var dateTv = binding.dateTv
+    inner class HolderPdfUser(itemView: View): RecyclerView.ViewHolder(itemView){
+        //init UI components of row_pdf_user.xml
+        var pdfView = binding.pdfView
+        var progressBar = binding.progressBar
+        var categoryTv = binding.categoryTv
+        var titleTv = binding.titleTv
+        var descriptionTv = binding.descriptionTv
+        var sizeTv = binding.sizeTv
+        var dateTv = binding.dateTv
 
-        }
+    }
 
 
 }

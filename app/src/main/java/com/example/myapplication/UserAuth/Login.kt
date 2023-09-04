@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.AdminSide.Admin
 import com.example.myapplication.UserSide.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.UserSide.Fragments.HomeUserFragment
+import com.example.myapplication.UserSide.MainUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -47,17 +49,12 @@ class Login : AppCompatActivity() {
         // initialising Firebase auth object
         auth = FirebaseAuth.getInstance()
 
-
-
-
         btnLogin.setOnClickListener {
-
             progressBar.visibility = View.VISIBLE
             btnLogin.visibility = View.INVISIBLE
 
             // Perform sign-in operation or any other async task
             // ...
-
             // Simulate a delay for demonstration purposes (replace with your actual sign-in logic)
             Handler().postDelayed({
                 // Hide the progress bar and show the sign-in button
@@ -118,7 +115,7 @@ class Login : AppCompatActivity() {
                     val usertype = snapshot.child("usertype").value
 
                     if (usertype == "user"){
-                        startActivity(Intent(this@Login, MainActivity::class.java))
+                        startActivity(Intent(this@Login, MainUser::class.java))
                         finish()
                     }
                     else if(usertype == "admin"){

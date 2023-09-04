@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserSide.Fragments.HomeUserFragment">
+
+        <RelativeLayout
+            android:id="@+id/headerRl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            >
+                <LinearLayout
+                    android:id="@+id/novaLl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+                        <ImageView
+                            android:id="@+id/logo"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerInParent="true"
+                            android:contentDescription="@string/our_logo"
+                            android:src="@drawable/logo"
+                             />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="click to test nova!"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/blue"
+                            android:layout_marginStart="5dp"
+                            />
+
+                </LinearLayout>
+
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profileBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toStartOf="@+id/notificationsIv"
+                    android:clickable="true"
+                    android:contentDescription="@string/our_logo"
+                    android:src="@drawable/baseline_account_circle_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck"
+                    app:shapeAppearanceOverlay="@style/styleRoundCornersImage"
+                    />
+
+                <ImageView
+                    android:id="@+id/notificationsIv"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/our_logo"
+                    android:src="@drawable/teenyicons_bell_solid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headerRl"
+            android:layout_marginBottom="4dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="1dp"
+            android:text="Hello, Six"
+            android:textColor="@color/blue"
+            android:textSize="16sp"/>
+
+<!--        Recycler View widget-->
+
+        <TextView
+            android:id="@+id/searchEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keep Exploring!"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_below="@id/nameTv"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/blue" />
+
+        <com.google.android.flexbox.FlexboxLayout
+           android:id="@+id/sliderImg"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_below="@id/searchEt"
+            app:justifyContent="space_evenly"
+            android:background="@drawable/banner_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Connect, Share, and Explore Stories"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/blue"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lib-Nova Stories Explored"
+                            android:textStyle="normal"
+                            android:textSize="12sp"
+                            android:textColor="@color/blue"
+                            />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/saly"
+                    />
+
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+        <!--    show book categories-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sliderImg"
+            android:contentDescription="@string/Discover"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="scrollable"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Caption"
+            />
+        <!--    view pager -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@+id/tabLayout"
+            android:contentDescription="@string/Discover" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/novaFa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:backgroundTint="@color/green"
+            android:src="@drawable/baseline_android_24"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+
+<!--                <FrameLayout-->
+<!--                    android:layout_width="300dp"-->
+<!--                    android:layout_height="match_parent">-->
+
+<!--                        <fragment-->
+<!--                            android:id="@+id/sliderMenu"-->
+<!--                            android:name="com.example.myapplication.UserSide.SideMenuFragment"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            tools:layout="@layout/fragment_side_menu" />-->
+
+<!--                </FrameLayout>-->
+
+
+
+
+</RelativeLayout>

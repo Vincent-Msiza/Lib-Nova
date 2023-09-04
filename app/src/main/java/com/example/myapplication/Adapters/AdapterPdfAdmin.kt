@@ -18,16 +18,16 @@ import com.example.myapplication.databinding.RowPdfAdminBinding
 
 class AdapterPdfAdmin :RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>, Filterable{
     //context
-    private var context: Context
+    private val context: Context
     //arraylist to hold pdfs
-    public var pdfArrayList: ArrayList<ModelPdf>
-    private val filterList: ArrayList<ModelPdf>
+    var pdfArrayList: ArrayList<ModelPdf>
+    var filterList: ArrayList<ModelPdf>
 
     //viewBinding
     private lateinit var binding:RowPdfAdminBinding
 
     //filter object
-    private var filter: FilterPdfAdmin? = null
+    var filter: FilterPdfAdmin? = null
 
     //constructor
     constructor(context: Context, pdfArrayList: ArrayList<ModelPdf>) : super() {
@@ -137,6 +137,12 @@ class AdapterPdfAdmin :RecyclerView.Adapter<AdapterPdfAdmin.ViewHolder>, Filtera
             filter = FilterPdfAdmin(filterList, this)
         }
         return filter as FilterPdfAdmin
+    }
+
+    fun updateData(newList: List<ModelPdf>) {
+        pdfArrayList.clear()
+        pdfArrayList.addAll(newList)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

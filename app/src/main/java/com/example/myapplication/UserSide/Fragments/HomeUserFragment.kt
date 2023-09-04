@@ -1,18 +1,27 @@
-package com.example.myapplication.UserSide
+package com.example.myapplication.UserSide.Fragments
 
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.example.myapplication.BooksUserFragment
 import com.example.myapplication.Models.ModelCategory
-import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.Profile
+import com.example.myapplication.ProfileActivity
+import com.example.myapplication.R
+import com.example.myapplication.UserSide.Nova
+import com.example.myapplication.UserSide.Test
+import com.example.myapplication.chatbot.Bot
+import com.example.myapplication.databinding.FragmentHome2Binding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,22 +29,21 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class MainActivity : AppCompatActivity() {
-    //view binding
-    private lateinit var binding: ActivityMainBinding
-
+class HomeUserFragment : Fragment() {
+    //binding
+    private lateinit var binding: FragmentHome2Binding
     // firebase auth
     private lateinit var firebaseAuth: FirebaseAuth
 
     private lateinit var categoryArrayList: ArrayList<ModelCategory>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+       binding =  FragmentHome2Binding.inflate(LayoutInflater.from(context), container, false)
+
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance()
-
         //get current user names from firebase
         val fireBaseUser = firebaseAuth.currentUser
         val ref = FirebaseDatabase.getInstance().getReference("users")
@@ -44,8 +52,19 @@ class MainActivity : AppCompatActivity() {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val username = snapshot.child("name").value
+                    val profileImage = "${snapshot.child("profileImage").value}"
                     val greeting = "Hey, $username"
                     binding.nameTv.text = greeting
+
+                    //set image
+                    try{
+                        Glide.with(requireContext()).load(profileImage).placeholder(R.drawable.baseline_person_24)
+                            .into(binding.profileBtn)
+                    }
+                    catch (e:Exception){
+
+                    }
+
                 }
                 override fun onCancelled(error: DatabaseError) {
                 }
@@ -54,14 +73,24 @@ class MainActivity : AppCompatActivity() {
         setupWithViewPagerAdapter(binding.viewPager)
         binding.tabLayout.setupWithViewPager(binding.viewPager)
 
-        //open the slider menu
+        //open the profile
+        binding.profileBtn.setOnClickListener {
+            startActivity(Intent(this.requireContext(), Profile::class.java))
+        }
+       //open nova bot
+        binding.novaLl.setOnClickListener {
+            startActivity(Intent(this.requireContext(), Bot::class.java))
+        }
 
-
+        //return binding
+        return binding.root
     }
 
     private fun setupWithViewPagerAdapter(viewPager: ViewPager) {
-        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager,
-            FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, this)
+        val viewPagerAdapter = ViewPagerAdapter(this.childFragmentManager,
+            FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, requireContext())
+
+
         //init list
         categoryArrayList = ArrayList()
 

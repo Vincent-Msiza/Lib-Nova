@@ -1,43 +1,49 @@
 package com.example.myapplication.UserSide
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.myapplication.AdminSide.Admin
 import com.example.myapplication.R
+import com.example.myapplication.UserSide.Fragments.HomeUserFragment
+import com.example.myapplication.UserSide.Fragments.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 
-class Homeforuser : AppCompatActivity() {
+class MainUser : AppCompatActivity() {
 
     private lateinit var bottomNav: BottomNavigationView
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_homeforuser)
+        setContentView(R.layout.activity_main_user)
         // Initialize Firebase
         FirebaseApp.initializeApp(this)
 
-        bottomNav = findViewById(R.id.bottom_navigation)
-        //removing the effect of grey icons or default tint
+        bottomNav = findViewById(R.id.botton_nav)
+//        removing the effect of grey icons or default tint
 //        bottomNav.itemIconTintList = null
 
-//        loadFragment(HomeFragment())
+        loadFragment(HomeUserFragment())
 
-        bottomNav.setOnItemSelectedListener {
+       bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> {
-//                    loadFragment(HomeFragment())
+               R.id.home -> {
+//                   loadFragment(HomeUserFragment())
 
-                    return@setOnItemSelectedListener true
-                }
-                R.id.search -> {
-//                    loadFragment(SearchFragment())
-                    return@setOnItemSelectedListener true
-                }
-                R.id.nova -> {
+                   return@setOnItemSelectedListener true
+               }
+              R.id.search -> {
+//                   loadFragment(SearchFragment())
+                   return@setOnItemSelectedListener true
+               }
+//                R.id.nova -> {
 //                    loadFragment(Novaragment())
-                    return@setOnItemSelectedListener true
-                }
+//                    return@setOnItemSelectedListener true
+//                }
                 R.id.book -> {
 //                    loadFragment(LibraryFragment())
                     return@setOnItemSelectedListener true
@@ -49,7 +55,7 @@ class Homeforuser : AppCompatActivity() {
 
             }
             false
-        }
+       }
 
 
 
@@ -62,4 +68,5 @@ private  fun loadFragment(fragment: Fragment){
     transaction.replace(R.id.container,fragment)
     transaction.commit()
 }
+
 }

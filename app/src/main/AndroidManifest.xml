@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ExtraText">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".Classes.MyApplication"
         android:allowBackup="true"
@@ -15,21 +23,28 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".UserSide.Homeforuser"
+            android:name=".ProfileEditActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuActicity"
-            android:exported="false"
-            android:label="@string/title_activity_menu_acticity"
-            android:theme="@style/Theme.MyApplication.NoActionBar" />
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".UserSide.Test"
+            android:exported="false" />
+        <activity
+            android:name=".chatbot.Bot"
+            android:exported="false" />
+        <activity
+            android:name=".UserSide.Nova"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserSide.MainUser"
+            android:exported="false" />
         <activity
             android:name=".PdfViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PdfDetails"
-            android:exported="false" />
-        <activity
-            android:name=".PdfDetail"
             android:exported="false" />
         <activity
             android:name=".AdminSide.PdfEditActivity"
@@ -73,9 +88,6 @@
             android:name="com.google.android.gms.ads.AD_MANAGER_APP"
             android:value="true" />
 
-        <activity
-            android:name=".Registration3"
-            android:exported="false" />
         <activity
             android:name=".UserAuth.Registration2"
             android:exported="false" />
