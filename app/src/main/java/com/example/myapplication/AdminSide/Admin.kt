@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myapplication.Adapters.AdapterCategory
 import com.example.myapplication.Models.ModelCategory
+import com.example.myapplication.Profile
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityAdminBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -43,14 +45,27 @@ class Admin : AppCompatActivity() {
         val firebaseuser = firebaseAuth.currentUser
         val ref = FirebaseDatabase.getInstance().getReference("users")
 
+
         //get current username from firebase
         ref.child(firebaseuser!!.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val username = snapshot.child("name").value
+                    val profileImage = "${snapshot.child("profileImage").value}"
                     val greeting = "Hello,$username"
                     binding.nameTv.text = greeting
+
+                    // Move this block inside onDataChange
+                    try {
+                        Glide.with(this@Admin)  // Note the change here, using 'this@Admin' instead of 'this'
+                            .load(profileImage)
+                            .placeholder(R.drawable.baseline_person_24)
+                            .into(binding.profileBtn)
+                    } catch (e: Exception) {
+                        // Log the exception or handle it appropriately
+                    }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     TODO("Not yet implemented")
                 }
@@ -66,7 +81,7 @@ class Admin : AppCompatActivity() {
                     adapterCategory.filter.filter(s)
                 }
                 catch (e: Exception){
-
+                    TODO("Not yet implemented")
                 }
             }
 
@@ -77,8 +92,8 @@ class Admin : AppCompatActivity() {
         })
 
         //moving to the notifications
-            binding.notificationsIv.setOnClickListener {
-            val intent = Intent(this, NotificationsAdmin::class.java)
+            binding.profileBtn.setOnClickListener {
+            val intent = Intent(this, Profile::class.java)
             startActivity(intent)
         }
 

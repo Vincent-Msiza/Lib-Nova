@@ -6,11 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".chatbot.Bot">
 
+    <RelativeLayout
+        android:id="@+id/headerLl"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@color/white"
+            android:contentDescription="@string/action_settings"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:scaleX="-1"
+            android:src="@drawable/ac_move" />
+        <!--        text-->
+        <TextView
+            android:id="@+id/toolbarTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Nova AI"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom_layout" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerLl"
+        android:layout_above="@id/bottom_layout"
+
+        />
 
     <TextView
         android:id="@+id/welcome_text"
@@ -18,8 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="Welcome to Nova Bot\nTry it out now"
-        android:textSize="28dp" />
+        android:text="This is the beta version of Nova robot more is to come"
+        android:textSize="22dp" />
 
     <RelativeLayout
         android:id="@+id/bottom_layout"

@@ -113,6 +113,7 @@ class ProfileEditActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 Toast.makeText(this, "Failed to upload due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
+        progressDialog.dismiss()
     }
 
     private fun updateProfile(uploadedImageUrl: String) {

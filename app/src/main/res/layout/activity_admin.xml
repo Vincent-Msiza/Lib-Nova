@@ -34,16 +34,22 @@
             android:layout_toEndOf="@+id/menuIb"
             android:textColor="@color/blue" />
 
-        <ImageView
-            android:id="@+id/notificationsIv"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_Btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+           android:layout_alignParentEnd="true"
+            android:clickable="true"
             android:contentDescription="@string/our_logo"
-            android:src="@drawable/teenyicons_bell_solid"
+            android:src="@drawable/baseline_account_circle_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck"
+            app:shapeAppearanceOverlay="@style/styleRoundCornersImage"
+            />
+
     </RelativeLayout>
 
     <TextView

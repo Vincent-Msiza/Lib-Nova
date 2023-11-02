@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.Manifest.permission.MANAGE_MEDIA
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -10,12 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.PackageManagerCompat
 import com.example.myapplication.Classes.MyApplication
 import com.example.myapplication.databinding.ActivityPdfDetailBinding
+import com.example.myapplication.databinding.DialogCommentAddBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -88,6 +91,14 @@ class PdfDetailActivity : AppCompatActivity() {
 
         }
 
+        binding.addCommentBtn.setOnClickListener {
+            if (firebaseAuth.currentUser == null){
+
+            }else{
+                addCommentDialog()
+            }
+        }
+
         //handle click add or remove favorite
         binding.favoriteBtn.setOnClickListener {
             //user is logged in we can do favorite functionality
@@ -117,6 +128,72 @@ class PdfDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+    private var comment = ""
+    private fun addCommentDialog() {
+        val commentAddBinding = DialogCommentAddBinding.inflate(LayoutInflater.from(this))
+
+        //setup dialog
+        val builder = AlertDialog.Builder(this, R.style.CustomDialog)
+        builder.setView(commentAddBinding.root)
+
+        //create and show alert dialog
+        val alertDialog = builder.create()
+        alertDialog.show()
+
+        //handle click dismiss dialog
+        commentAddBinding.backBtn.setOnClickListener { alertDialog.dismiss() }
+
+        //handle click add comment
+        commentAddBinding.submitBtn.setOnClickListener {
+            //set data
+            comment = commentAddBinding.commentEt.text.toString().trim()
+            //validate data
+            if (comment.isEmpty()){
+                    Toast.makeText(this, "Enter comment...", Toast.LENGTH_SHORT).show()
+
+            }else{
+                alertDialog.dismiss()
+                addComment()
+
+            }
+
+        }
+
+    }
+
+    private fun addComment() {
+        //show progress dialog
+        progressDialog.setMessage("Adding comment")
+        progressDialog.show()
+
+        //timestamp
+        val timestamp = "${System.currentTimeMillis()}"
+
+        //setup data to add in db for comment
+        val hashMap = HashMap<String, Any>()
+        hashMap["id"] = "$timestamp"
+        hashMap["bookId"] = "$bookId"
+        hashMap["timestamp"] = "$timestamp"
+        hashMap["comment"] = "$comment"
+        hashMap["uid"] = "${firebaseAuth.uid}"
+
+
+        //db path to add data into it
+        val ref = FirebaseDatabase.getInstance().getReference("users")
+        ref.child(bookId).child("Comments").child(timestamp)
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                progressDialog.dismiss()
+                Toast.makeText(this, "Comment added...", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {e ->
+                progressDialog.dismiss()
+                Toast.makeText(this, "Failed to add comment due to ${e.message} ", Toast.LENGTH_SHORT).show()
+            }
+
+    }
+
     private val requestStoragePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
         if (isGranted) {
             downloadBook()

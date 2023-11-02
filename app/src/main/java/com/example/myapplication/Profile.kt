@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.example.myapplication.Adapters.AdapterPdfFavorite
 import com.example.myapplication.Classes.MyApplication
+import com.example.myapplication.Models.ModelPdf
+import com.example.myapplication.UserAuth.Login
 import com.example.myapplication.databinding.ActivityProfile2Binding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +21,10 @@ class Profile : AppCompatActivity() {
     //firebase
     private lateinit var firebaseAuth: FirebaseAuth
 
+    private lateinit var bookArrayList: ArrayList<ModelPdf>
+
+    private lateinit var adapterPdfFavorite: AdapterPdfFavorite
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfile2Binding.inflate(layoutInflater)
@@ -25,12 +32,18 @@ class Profile : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         loadUserinfo()
+        loadFavoriteBooks()
 
         binding.backBtn.setOnClickListener {
             onBackPressed()
         }
         binding.profileEditBtn.setOnClickListener {
             startActivity(Intent(this, ProfileEditActivity::class.java))
+        }
+        binding.logOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, Login::class.java))
+
         }
 
     }
@@ -74,5 +87,41 @@ class Profile : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
+    }
+
+    private fun loadFavoriteBooks(){
+        bookArrayList = ArrayList();
+
+        val ref = FirebaseDatabase.getInstance().getReference("users")
+        ref.child(firebaseAuth.uid!!).child("Favorites")
+            .addValueEventListener(object  : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    //clear array list before starting adding data
+                    bookArrayList.clear()
+                    for (ds in snapshot.children){
+                        //get only id of the books
+                        val bookId = "${ds.child("bookId").value}"
+
+                        //set to model
+                        val modelPdf = ModelPdf()
+                        modelPdf.id = bookId
+
+                        //add model to list
+                        bookArrayList.add(modelPdf)
+
+
+                    }
+                    //set number of favorites
+                    binding.favoriteBookCount.text = "${bookArrayList.size}"
+                    adapterPdfFavorite = AdapterPdfFavorite(this@Profile, bookArrayList)
+                    binding.booksRv.adapter = adapterPdfFavorite
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
     }
 }

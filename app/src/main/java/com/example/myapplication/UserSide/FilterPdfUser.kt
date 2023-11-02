@@ -1,8 +1,6 @@
 package com.example.myapplication.UserSide
 
-import android.annotation.SuppressLint
 import android.widget.Filter
-import com.example.myapplication.Adapters.AdapterPdfAdmin
 import com.example.myapplication.Adapters.AdapterPdfUser
 import com.example.myapplication.Models.ModelPdf
 

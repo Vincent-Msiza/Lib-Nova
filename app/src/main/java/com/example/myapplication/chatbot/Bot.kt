@@ -23,6 +23,7 @@ import java.io.IOException
 import java.util.Locale
 import java.util.Objects
 
+@Suppress("DEPRECATION")
 class Bot : AppCompatActivity() {
     private val messageList = mutableListOf<Message>()
     private lateinit var messageAdapter: MessageAdapter
@@ -55,7 +56,10 @@ class Bot : AppCompatActivity() {
                 RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
-
+                //back btn
+            binding.backBtn.setOnClickListener {
+                onBackPressed()
+            }
             // on below line we are passing our
             // language as a default language.
             intent.putExtra(
@@ -81,12 +85,6 @@ class Bot : AppCompatActivity() {
                     )
                     .show()
             }}
-
-
-
-
-
-
 
 
         binding.sendBtn.setOnClickListener {
@@ -128,7 +126,7 @@ class Bot : AppCompatActivity() {
 
         val request = Request.Builder()
             .url("https://api.openai.com/v1/completions")
-            .header("Authorization", "Bearer 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")
+            .header("Authorization", "Bearer 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")
             .post(body)
             .build()
 
